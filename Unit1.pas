@@ -63,86 +63,121 @@ type
 
 var
   Form1: TForm1;
+  Fls: Boolean;
+  s1: string;
+  i: Integer;
+  EritroLevel, GemoLevel, LeikoLevel, LimfoLevel, SOELevel : string;
 
 implementation
 
 {$R *.dfm}
+  function IsLimitHigh (LowIndex,HighIndex: Real; Value: string): string;
+begin
+  if ( StrToFloat(Value)< LowIndex) then
+      begin
+        Result := 'Low';
+      end
+   else
+      begin
+        if ( StrToFloat(Value)> HighIndex)then
+            begin
+              Result := 'High';
+            end
+        else
+            begin
+              Result := 'Normal';
+            end;
+      end;
+end;
+
+
+
 
 procedure TForm1.DiagnosBtnClick(Sender: TObject);
+
 begin
-  if ({edges})then
+       s1 := Eritro.Text;
+       Eritro.Text:= IsLimitHigh(3,5,s1);
+
+
+
+
+
+
+  Fls :=False;
+  if ({edges}Fls)then
     begin
-          if ({LowGemoglo = Y})then
+          if ({LowGemoglo = Y}Fls)then
             begin
-                  if ({bloodCathOut})then
+                  if ({bloodCathOut}Fls)then
                       begin
                         {Switch//Diagmos}
-                      end;
+                      end
                   else
                       begin
                         //Diagnos
                       end;
-            end;
+            end
           else
             begin
-                  if ({Eritro})then
+                  if ({Eritro}Fls)then
                       begin
                         //Diagnose
-                      end;
+                      end
                   else
                     begin
-                        if ({LowLimfi =Y})then
+                        if ({LowLimfi =Y}Fls)then
                             begin
-                                if ({ShadingUP})then
+                                if ({ShadingUP}Fls)then
                                     begin
-                                        if ({ShadingAreas = mult})then
+                                        if ({ShadingAreas = mult}Fls)then
                                             begin
-                                                 if ({LeikoUp = Y})then
+                                                 if ({LeikoUp = Y}Fls)then
                                                       begin
                                                         //Diagnose
-                                                      end;
+                                                      end
                                                   else
                                                       begin
-                                                        if ({UpSOE = Y})then
+                                                        if ({UpSOE = Y}Fls)then
                                                             begin
-                                                              if ({BloodCathOut})then
+                                                              if ({BloodCathOut}Fls)then
                                                                   begin
                                                                     //Diagnose
-                                                                  end;
+                                                                  end
                                                               else
                                                                   begin
                                                                     //Diagnose
                                                                   end;
-                                                            end;
+                                                            end
                                                         else
                                                             begin
                                                               //Diagnose
                                                             end;
                                                       end;
-                                            end;
+                                            end
                                         else
                                             begin
                                                //Diagnose
                                             end;
-                                    end;
+                                    end
                                 else
                                     begin
-                                      if ({plotno})then
+                                      if ({plotno}Fls)then
                                           begin
                                               //Diagnose
-                                          end;
+                                          end
                                        else
                                           begin
                                               //Diagnose
                                           end;
                                     end;
-                            end;
+                            end
                         else
                             begin
-                                if ({LeikoUp})then
+                                if ({LeikoUp}Fls)then
                                     begin
                                         //Diagnose
-                                    end;
+                                    end
                                 else
                                     begin
                                         //Switch with if
@@ -150,47 +185,44 @@ begin
                             end;
                     end;
             end;
-    end;
+    end
   else
     begin
-        if ({UpLeiko =y})then
+        if ({UpLeiko =y}Fls)then
             begin
-                if ()then
+                if (Fls)then
                     begin
-                     if ({LowLimfo})then
+                     if ({LowLimfo}Fls)then
                         begin
                          //diagnose
-                        end;
+                        end
                       else
                         begin
                          //diagnose
                         end;
-                    end;
+                    end
                 else
                     begin
-                      if ({ChestPain})then
+                      if ({ChestPain}Fls)then
                         begin
                           // diagnose
-                        end;
+                        end
                       else
                         begin
                           // diagnose
                         end;
                     end;
-            end;
+            end
         else
             begin
                 //Case diagnose
             end;
     end;
-
-
-
-
-
-
-
-
 end;
+
+
+
+
+
 
 end.
