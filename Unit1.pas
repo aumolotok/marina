@@ -97,19 +97,51 @@ begin
       end;
 end;
 
+procedure TuneTheValue(TxtBx:TEdit; LowIndex,HighIndex:real;var ResultValue:string);
+begin
+     if (TxtBx.Text <>'') then
+      begin
+      ResultValue := IsLimitHigh(LowIndex,HighIndex,TxtBx.Text)
+      end;
 
+end;
+
+
+
+procedure TForm1.EritroChange(Sender: TObject);
+begin
+  TuneTheValue(Eritro,1.5,5.5,EritroLevel);
+end;
+
+
+procedure TForm1.LeikoChange(Sender: TObject);
+begin
+  TuneTheValue(Leiko,1.5,5.5,LeikoLevel);
+end;
+
+
+procedure TForm1.GemoglobinChange(Sender: TObject);
+begin
+  TuneTheValue(Gemoglobin,1.5,5.5,GemoLevel);
+end;
+
+
+procedure TForm1.SOEChange(Sender: TObject);
+begin
+  TuneTheValue(SOE,1.5,5.5,SOELevel);
+end;
+
+
+procedure TForm1.LimfoChange(Sender: TObject);
+begin
+  TuneTheValue(Limfo,1.5,5.5,LimfoLevel);
+
+end;
 
 
 procedure TForm1.DiagnosBtnClick(Sender: TObject);
 
 begin
-       s1 := Eritro.Text;
-       Eritro.Text:= IsLimitHigh(3,5,s1);
-
-
-
-
-
 
   Fls :=False;
   if ({edges}Fls)then
@@ -228,48 +260,5 @@ begin
 end;
 
 
-
-
-
-
-procedure TForm1.EritroChange(Sender: TObject);
-begin
-  if (Eritro.Text <>'') then
-    begin
-    EritroLevel := IsLimitHigh(1.5,5.5,Eritro.Text);
-    end
-end;
-
-procedure TForm1.LeikoChange(Sender: TObject);
-begin
-  if (Leiko.Text <>'') then
-    begin
-    LeikoLevel := IsLimitHigh(1.5,5.5,Leiko.Text);
-    end
-end;
-
-procedure TForm1.GemoglobinChange(Sender: TObject);
-begin
-   if (Gemoglobin.Text <>'') then
-    begin
-    GemoLevel := IsLimitHigh(1.5,5.5,Gemoglobin.Text);
-    end
-end;
-
-procedure TForm1.SOEChange(Sender: TObject);
-begin
-   if (SOE.Text <>'') then
-    begin
-    SOELevel := IsLimitHigh(1.5,5.5,SOE.Text);
-    end
-end;
-
-procedure TForm1.LimfoChange(Sender: TObject);
-begin
-   if (Limfo.Text <>'') then
-    begin
-    LimfoLevel := IsLimitHigh(1.5,5.5,LimfoLevel.Text);
-    end
-end;
 
 end.

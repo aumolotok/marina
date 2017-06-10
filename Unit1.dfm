@@ -1,9 +1,9 @@
 object Form1: TForm1
-  Left = 149
-  Top = 58
+  Left = 328
+  Top = 158
   Width = 1004
   Height = 633
-  Caption = 'Form1'
+  Caption = 'Bla-bla-bla'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -62,7 +62,6 @@ object Form1: TForm1
       Width = 121
       Height = 21
       TabOrder = 0
-      Text = 'Eritro'
       OnChange = EritroChange
     end
     object Leiko: TEdit
@@ -71,7 +70,6 @@ object Form1: TForm1
       Width = 121
       Height = 21
       TabOrder = 1
-      Text = 'Leiko'
       OnChange = LeikoChange
     end
     object Gemoglobin: TEdit
@@ -80,7 +78,6 @@ object Form1: TForm1
       Width = 121
       Height = 21
       TabOrder = 2
-      Text = 'Gemoglobin'
       OnChange = GemoglobinChange
     end
     object SOE: TEdit
@@ -89,7 +86,6 @@ object Form1: TForm1
       Width = 121
       Height = 21
       TabOrder = 3
-      Text = 'SOE'
       OnChange = SOEChange
     end
     object Limfo: TEdit
@@ -98,7 +94,6 @@ object Form1: TForm1
       Width = 121
       Height = 21
       TabOrder = 4
-      Text = 'Limfo'
       OnChange = LimfoChange
     end
   end
@@ -129,7 +124,6 @@ object Form1: TForm1
       Width = 121
       Height = 21
       TabOrder = 0
-      Text = 'Protein'
     end
     object PistLeiko: TEdit
       Left = 104
@@ -137,7 +131,6 @@ object Form1: TForm1
       Width = 121
       Height = 21
       TabOrder = 1
-      Text = 'PistLeiko'
     end
   end
   object Edges: TGroupBox
