@@ -36,8 +36,8 @@ type
     PusOut: TRadioButton;
     MucusOut: TRadioButton;
     ShadingLocation: TGroupBox;
-    Up: TRadioButton;
-    Down: TRadioButton;
+    ShadingUp: TRadioButton;
+    ShadingDown: TRadioButton;
     Shading: TGroupBox;
     ShadingAreas: TRadioGroup;
     MultipleAreas: TRadioButton;
@@ -45,7 +45,7 @@ type
     TumorInf: TGroupBox;
     TumorShape: TRadioGroup;
     StarShape: TRadioButton;
-    CircleShape: TRadioButton;
+    RingShape: TRadioButton;
     LobitShape: TRadioButton;
     IrregularShape: TRadioButton;
     CloudShape: TRadioButton;
@@ -54,6 +54,9 @@ type
     GeneralSymptoms: TGroupBox;
     ChestPain: TCheckBox;
     DiagnosBtn: TButton;
+    Sealing: TCheckBox;
+    RoundShape: TRadioButton;
+    ShadowSize: TRadioGroup;
     procedure DiagnosBtnClick(Sender: TObject);
     procedure EritroChange(Sender: TObject);
     procedure LeikoChange(Sender: TObject);
@@ -71,9 +74,24 @@ var
   Fls: Boolean;
   s1: string;
   i: Integer;
-  EritroLevel, GemoLevel, LeikoLevel, LimfoLevel, SOELevel : string;
-  EdgesResolutionST,ShadingLocationST,ShadingAreasST,CauthOutST, TumorShapeSt : string;
+
+  EritroLevel, GemoLevel, LeikoLevel, LimfoLevel, SOELevel,
+  EdgesResolutionST,ShadingLocationST,ShadingAreasST,CauthOutST, TumorShapeSt,
+  Diagnosis:string;
+
   ChestPainBool: Boolean;
+
+const
+  Low : string = 'Low';
+  Normal : string = 'Normal';
+  High : string = 'High';
+  Oncology: string = 'Онкология';
+  Infiltrate: string  = 'Инфильтративный';
+  Dissiminative: string = 'Диссеминированный';
+  Cavernoze: string = 'Каверозный';
+  Pneumonia: string = 'Пневмония';
+  Hotbed : string = 'Очаговый';
+
 
 implementation
 
@@ -82,17 +100,17 @@ implementation
 begin
   if ( StrToFloat(Value)< LowIndex) then
       begin
-        Result := 'Low';
+        Result := Low;
       end
    else
       begin
         if ( StrToFloat(Value)> HighIndex)then
             begin
-              Result := 'High';
+              Result := High;
             end
         else
             begin
-              Result := 'Normal';
+              Result := Normal;
             end;
       end;
 end;
@@ -144,82 +162,97 @@ procedure TForm1.DiagnosBtnClick(Sender: TObject);
 begin
 
   Fls :=False;
-  if ({edges}Fls)then
+  if (rbBadResolution.Checked)then
     begin
-          if ({LowGemoglo = Y}Fls)then
+          if (GemoLevel = Low)then
             begin
-                  if ({bloodCathOut}Fls)then
+                  if (BloodCauthOut.Checked)then
                       begin
-                        {Switch//Diagmos}
+                            if (PusOut.Checked)then  Diagnosis := Infiltrate
+                            else Diagnosis := Oncology;
                       end
                   else
                       begin
-                        //Diagnos
+                      Diagnosis := Infiltrate;
                       end;
             end
           else
             begin
-                  if ({Eritro}Fls)then
+                  if (EritroLevel = Low)then
                       begin
-                        //Diagnose
+                        Diagnosis := Oncology;
                       end
                   else
                     begin
-                        if ({LowLimfi =Y}Fls)then
+                        if (LimfoLevel = Low)then
                             begin
-                                if ({ShadingUP}Fls)then
+                                if (ShadingUp.Checked)then
                                     begin
-                                        if ({ShadingAreas = mult}Fls)then
+                                        if (MultipleAreas.Checked)then
                                             begin
-                                                 if ({LeikoUp = Y}Fls)then
+                                                 if (LeikoLevel = High)then
                                                       begin
-                                                        //Diagnose
+                                                        Diagnosis :=Dissiminative;
                                                       end
                                                   else
                                                       begin
-                                                        if ({UpSOE = Y}Fls)then
+                                                        if ({UpSOE = Y} SOELevel = High)then
                                                             begin
-                                                              if ({BloodCathOut}Fls)then
+                                                              if (BloodCauthOut.Checked)then
                                                                   begin
-                                                                    //Diagnose
+                                                                    Diagnosis := Dissiminative;
                                                                   end
                                                               else
                                                                   begin
-                                                                    //Diagnose
+                                                                    Diagnosis := Dissiminative;
                                                                   end;
                                                             end
                                                         else
                                                             begin
-                                                              //Diagnose
+                                                              Diagnosis := Infiltrate;
                                                             end;
                                                       end;
                                             end
                                         else
                                             begin
-                                               //Diagnose
+                                               Diagnosis := Infiltrate;
                                             end;
                                     end
                                 else
                                     begin
-                                      if ({plotno}Fls)then
+                                      if (Sealing.Checked)then
                                           begin
-                                              //Diagnose
+                                              Diagnosis := Pneumonia;
                                           end
                                        else
                                           begin
-                                              //Diagnose
+                                              Diagnosis := Dissiminative;
                                           end;
                                     end;
                             end
                         else
                             begin
-                                if ({LeikoUp}Fls)then
+                                if ({LeikoUp} LeikoLevel = High)then
                                     begin
-                                        //Diagnose
+                                        Diagnosis := Dissiminative;
                                     end
                                 else
                                     begin
-                                        //Switch with if
+                                        if(LobitShape.Checked or CloudShape.Checked)then
+                                          Diagnosis := Infiltrate
+                                        else
+                                           begin
+                                             if(RoundShape.Checked)then
+                                              begin
+                                              
+                                              end;
+
+
+
+                                           end;
+
+
+
                                     end;
                             end;
                     end;

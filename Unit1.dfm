@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 328
-  Top = 158
+  Left = 274
+  Top = 251
   Width = 1004
   Height = 633
   Caption = 'Bla-bla-bla'
@@ -214,10 +214,10 @@ object Form1: TForm1
     end
   end
   object Shading: TGroupBox
-    Left = 304
+    Left = 296
     Top = 224
-    Width = 177
-    Height = 209
+    Width = 201
+    Height = 345
     Caption = 'Shading'
     TabOrder = 4
     object ShadingLocation: TGroupBox
@@ -227,20 +227,20 @@ object Form1: TForm1
       Height = 81
       Caption = 'ShadingLocation'
       TabOrder = 0
-      object Up: TRadioButton
+      object ShadingUp: TRadioButton
         Left = 24
         Top = 16
         Width = 113
         Height = 17
-        Caption = 'Up'
+        Caption = 'ShadingUp'
         TabOrder = 0
       end
-      object Down: TRadioButton
+      object ShadingDown: TRadioButton
         Left = 24
         Top = 48
         Width = 113
         Height = 17
-        Caption = 'Down'
+        Caption = 'ShadingDown'
         TabOrder = 1
       end
     end
@@ -268,19 +268,27 @@ object Form1: TForm1
       Caption = 'SingleArea'
       TabOrder = 3
     end
+    object ShadowSize: TRadioGroup
+      Left = 8
+      Top = 200
+      Width = 185
+      Height = 105
+      Caption = 'ShadowSize'
+      TabOrder = 4
+    end
   end
   object TumorInf: TGroupBox
     Left = 504
     Top = 224
-    Width = 313
-    Height = 297
+    Width = 433
+    Height = 369
     Caption = 'TumorInf'
     TabOrder = 5
     object TumorShape: TRadioGroup
-      Left = 16
+      Left = 8
       Top = 24
       Width = 297
-      Height = 241
+      Height = 273
       Caption = 'TumorShape'
       TabOrder = 0
     end
@@ -292,12 +300,12 @@ object Form1: TForm1
       Caption = 'StarShape'
       TabOrder = 1
     end
-    object CircleShape: TRadioButton
+    object RingShape: TRadioButton
       Left = 40
       Top = 72
       Width = 113
       Height = 17
-      Caption = 'CircleShape'
+      Caption = 'RingShape'
       TabOrder = 2
     end
     object LobitShape: TRadioButton
@@ -339,6 +347,22 @@ object Form1: TForm1
       Height = 17
       Caption = 'SlitShape'
       TabOrder = 7
+    end
+    object Sealing: TCheckBox
+      Left = 40
+      Top = 304
+      Width = 97
+      Height = 17
+      Caption = 'Sealing'
+      TabOrder = 8
+    end
+    object RoundShape: TRadioButton
+      Left = 32
+      Top = 256
+      Width = 113
+      Height = 17
+      Caption = 'RoundShape'
+      TabOrder = 9
     end
   end
   object GeneralSymptoms: TGroupBox
