@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, Menus;
+  Dialogs, StdCtrls, ExtCtrls, Menus,Unit2;
 
 type
   TForm1 = class(TForm)
@@ -57,12 +57,14 @@ type
     Sealing: TCheckBox;
     RoundShape: TRadioButton;
     ShadowSize: TRadioGroup;
+    Form2: TButton;
     procedure DiagnosBtnClick(Sender: TObject);
     procedure EritroChange(Sender: TObject);
     procedure LeikoChange(Sender: TObject);
     procedure GemoglobinChange(Sender: TObject);
     procedure SOEChange(Sender: TObject);
     procedure LimfoChange(Sender: TObject);
+    procedure Form2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -293,5 +295,10 @@ begin
 end;
 
 
+
+procedure TForm1.Form2Click(Sender: TObject);
+begin
+  Unit2.Form2.Show;
+end;
 
 end.

@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 274
-  Top = 251
-  Width = 1004
+  Left = 328
+  Top = 156
+  Width = 609
   Height = 633
   Caption = 'Bla-bla-bla'
   Color = clBtnFace
@@ -389,6 +389,15 @@ object Form1: TForm1
     Caption = 'DiagnosBtn'
     TabOrder = 7
     OnClick = DiagnosBtnClick
+  end
+  object Form2: TButton
+    Left = 64
+    Top = 424
+    Width = 75
+    Height = 25
+    Caption = 'Form2'
+    TabOrder = 8
+    OnClick = Form2Click
   end
   object MainMenu1: TMainMenu
     Left = 8
