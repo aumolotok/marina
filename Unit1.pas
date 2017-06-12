@@ -57,14 +57,18 @@ type
     Sealing: TCheckBox;
     RoundShape: TRadioButton;
     ShadowSize: TRadioGroup;
-    Form2: TButton;
+    Chose: TButton;
+    NoShadow: TRadioButton;
+    Smal: TRadioButton;
+    Midle: TRadioButton;
+    Big: TRadioButton;
     procedure DiagnosBtnClick(Sender: TObject);
     procedure EritroChange(Sender: TObject);
     procedure LeikoChange(Sender: TObject);
     procedure GemoglobinChange(Sender: TObject);
     procedure SOEChange(Sender: TObject);
     procedure LimfoChange(Sender: TObject);
-    procedure Form2Click(Sender: TObject);
+    procedure ChoseClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -130,31 +134,31 @@ end;
 
 procedure TForm1.EritroChange(Sender: TObject);
 begin
-  TuneTheValue(Eritro,1.5,5.5,EritroLevel);
+  TuneTheValue(Eritro,3.9,5.5,EritroLevel);
 end;
 
 
 procedure TForm1.LeikoChange(Sender: TObject);
 begin
-  TuneTheValue(Leiko,1.5,5.5,LeikoLevel);
+  TuneTheValue(Leiko,4,9,LeikoLevel);
 end;
 
 
 procedure TForm1.GemoglobinChange(Sender: TObject);
 begin
-  TuneTheValue(Gemoglobin,1.5,5.5,GemoLevel);
+  TuneTheValue(Gemoglobin,120,160,GemoLevel);
 end;
 
 
 procedure TForm1.SOEChange(Sender: TObject);
 begin
-  TuneTheValue(SOE,1.5,5.5,SOELevel);
+  TuneTheValue(SOE,2,13,SOELevel);
 end;
 
 
 procedure TForm1.LimfoChange(Sender: TObject);
 begin
-  TuneTheValue(Limfo,1.5,5.5,LimfoLevel);
+  TuneTheValue(Limfo,18,40,LimfoLevel);
 
 end;
 
@@ -244,17 +248,22 @@ begin
                                           Diagnosis := Infiltrate
                                         else
                                            begin
-                                             if(RoundShape.Checked)then
+                                             if(StarShape.Checked or RingShape.Checked or IrregularShape.Checked or OvalShape.Checked or SlitShape.Checked)then
                                               begin
-                                              
+                                                Diagnosis := Hotbed;
+                                              end
+                                             else
+                                              begin
+                                                if (Big.Checked)then
+                                                  begin
+                                                    Diagnosis := Infiltrate;
+                                                  end
+                                                else
+                                                  begin
+                                                    Diagnosis := Hotbed;
+                                                  end;
                                               end;
-
-
-
                                            end;
-
-
-
                                     end;
                             end;
                     end;
@@ -262,41 +271,52 @@ begin
     end
   else
     begin
-        if ({UpLeiko =y}Fls)then
+        if ({UpLeiko =y}LeikoLevel = High)then
             begin
-                if (Fls)then
+                if (GemoLevel = Low)then
                     begin
-                     if ({LowLimfo}Fls)then
+                     if ({LowLimfo}LimfoLevel = Low)then
                         begin
-                         //diagnose
+                         Diagnosis := Dissiminative;
                         end
                       else
                         begin
-                         //diagnose
+                         Diagnosis := Cavernoze;
                         end;
                     end
                 else
                     begin
-                      if ({ChestPain}Fls)then
+                      if ({ChestPain}ChestPain.Checked)then
                         begin
-                          // diagnose
+                          Diagnosis := Pneumonia;
                         end
                       else
                         begin
-                          // diagnose
+                          Diagnosis := Dissiminative;
                         end;
                     end;
             end
         else
             begin
-                //Case diagnose
+                if (MucusOut.Checked)then
+                  begin
+                    Diagnosis := Infiltrate;
+                  end
+                else
+                  begin
+                    Diagnosis := Cavernoze;
+                  end;
             end;
     end;
+PistLeiko.Text := Diagnosis;
+
 end;
 
 
 
-procedure TForm1.Form2Click(Sender: TObject);
+
+
+procedure TForm1.ChoseClick(Sender: TObject);
 begin
   Unit2.Form2.Show;
 end;

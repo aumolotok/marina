@@ -1,8 +1,8 @@
 object Form1: TForm1
-  Left = 328
-  Top = 156
-  Width = 609
-  Height = 633
+  Left = 85
+  Top = 109
+  Width = 1175
+  Height = 759
   Caption = 'Bla-bla-bla'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -136,15 +136,15 @@ object Form1: TForm1
   object Edges: TGroupBox
     Left = 312
     Top = 16
-    Width = 169
-    Height = 193
+    Width = 161
+    Height = 113
     Caption = 'Edges'
     TabOrder = 2
     object resolution: TRadioGroup
       Left = 8
       Top = 32
-      Width = 129
-      Height = 97
+      Width = 137
+      Height = 73
       Caption = 'resolution'
       TabOrder = 0
     end
@@ -167,7 +167,7 @@ object Form1: TForm1
   end
   object CauthOut: TGroupBox
     Left = 496
-    Top = 24
+    Top = 16
     Width = 217
     Height = 185
     Caption = 'CauthOut'
@@ -215,9 +215,9 @@ object Form1: TForm1
   end
   object Shading: TGroupBox
     Left = 296
-    Top = 224
-    Width = 201
-    Height = 345
+    Top = 216
+    Width = 553
+    Height = 121
     Caption = 'Shading'
     TabOrder = 4
     object ShadingLocation: TGroupBox
@@ -245,43 +245,75 @@ object Form1: TForm1
       end
     end
     object ShadingAreas: TRadioGroup
-      Left = 8
-      Top = 120
-      Width = 153
-      Height = 73
+      Left = 168
+      Top = 24
+      Width = 169
+      Height = 81
       Caption = 'ShadingAreas'
       TabOrder = 1
     end
     object MultipleAreas: TRadioButton
-      Left = 24
-      Top = 144
+      Left = 176
+      Top = 48
       Width = 113
       Height = 17
       Caption = 'MultipleAreas'
       TabOrder = 2
     end
     object SingleArea: TRadioButton
-      Left = 24
-      Top = 168
+      Left = 176
+      Top = 72
       Width = 113
       Height = 17
       Caption = 'SingleArea'
       TabOrder = 3
     end
     object ShadowSize: TRadioGroup
-      Left = 8
-      Top = 200
+      Left = 352
+      Top = 24
       Width = 185
-      Height = 105
+      Height = 81
       Caption = 'ShadowSize'
       TabOrder = 4
     end
+    object NoShadow: TRadioButton
+      Left = 360
+      Top = 48
+      Width = 73
+      Height = 17
+      Caption = 'NoShadow'
+      TabOrder = 5
+    end
+    object Smal: TRadioButton
+      Left = 360
+      Top = 80
+      Width = 65
+      Height = 17
+      Caption = 'Smal'
+      TabOrder = 6
+    end
+    object Midle: TRadioButton
+      Left = 440
+      Top = 48
+      Width = 81
+      Height = 17
+      Caption = 'Midle'
+      TabOrder = 7
+    end
+    object Big: TRadioButton
+      Left = 440
+      Top = 80
+      Width = 73
+      Height = 17
+      Caption = 'Big'
+      TabOrder = 8
+    end
   end
   object TumorInf: TGroupBox
-    Left = 504
-    Top = 224
-    Width = 433
-    Height = 369
+    Left = 856
+    Top = 8
+    Width = 321
+    Height = 329
     Caption = 'TumorInf'
     TabOrder = 5
     object TumorShape: TRadioGroup
@@ -366,15 +398,15 @@ object Form1: TForm1
     end
   end
   object GeneralSymptoms: TGroupBox
-    Left = 728
-    Top = 32
-    Width = 225
-    Height = 177
+    Left = 312
+    Top = 136
+    Width = 105
+    Height = 49
     Caption = 'GeneralSymptoms'
     TabOrder = 6
     object ChestPain: TCheckBox
-      Left = 32
-      Top = 40
+      Left = 8
+      Top = 24
       Width = 97
       Height = 17
       Caption = 'ChestPain'
@@ -390,14 +422,14 @@ object Form1: TForm1
     TabOrder = 7
     OnClick = DiagnosBtnClick
   end
-  object Form2: TButton
-    Left = 64
-    Top = 424
+  object Chose: TButton
+    Left = 136
+    Top = 344
     Width = 75
     Height = 25
-    Caption = 'Form2'
+    Caption = 'Chose'
     TabOrder = 8
-    OnClick = Form2Click
+    OnClick = ChoseClick
   end
   object MainMenu1: TMainMenu
     Left = 8

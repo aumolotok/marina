@@ -1,6 +1,6 @@
 object Form2: TForm2
-  Left = 213
-  Top = 138
+  Left = 299
+  Top = 263
   Width = 683
   Height = 563
   Caption = 'Form2'
@@ -47,8 +47,8 @@ object Form2: TForm2
       object BirthDate: TLabel
         Left = 64
         Top = 296
-        Width = 49
-        Height = 17
+        Width = 45
+        Height = 13
         Caption = 'BirthDate'
       end
       object Phone: TLabel
@@ -146,8 +146,8 @@ object Form2: TForm2
         Text = 'AddressField'
       end
       object Add: TButton
-        Left = 168
-        Top = 360
+        Left = 176
+        Top = 344
         Width = 75
         Height = 25
         Caption = 'Add'
@@ -155,12 +155,22 @@ object Form2: TForm2
         OnClick = AddClick
       end
       object Update: TButton
-        Left = 400
-        Top = 352
+        Left = 272
+        Top = 344
         Width = 75
         Height = 25
         Caption = 'Update'
         TabOrder = 9
+        OnClick = UpdateClick
+      end
+      object Delete: TButton
+        Left = 368
+        Top = 344
+        Width = 75
+        Height = 25
+        Caption = 'Delete'
+        TabOrder = 10
+        OnClick = DeleteClick
       end
     end
     object Diagnosis: TTabSheet
@@ -171,6 +181,7 @@ object Form2: TForm2
         Top = 16
         Width = 585
         Height = 241
+        DataSource = DiagnosisSourse
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -178,9 +189,19 @@ object Form2: TForm2
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
       end
+      object Refresh: TBitBtn
+        Left = 232
+        Top = 288
+        Width = 75
+        Height = 25
+        Caption = 'Refresh'
+        TabOrder = 1
+        OnClick = RefreshClick
+      end
     end
   end
   object AdoCon1: TADOConnection
+    Connected = True
     ConnectionString = 
       'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=DataBase\Voylikova_' +
       '12345 2003.mdb;Persist Security Info=False'
@@ -198,7 +219,31 @@ object Form2: TForm2
   object QueryPatient: TADOQuery
     Connection = AdoCon1
     Parameters = <>
+    SQL.Strings = (
+      'SELECT * FROM '#1055#1072#1094#1080#1077#1085#1090)
     Left = 136
+    Top = 488
+  end
+  object QueryDiagnosis: TADOQuery
+    Connection = AdoCon1
+    Parameters = <>
+    SQL.Strings = (
+      
+        'Select '#1048#1084#1103', '#1060#1072#1084#1080#1083#1080#1103', '#1054#1090#1095#1077#1089#1090#1074#1086', '#1044#1072#1090#1072#1056#1086#1076#1078#1077#1085#1080#1103', '#1044#1072#1090#1072#1044#1080#1072#1075#1085#1086#1079#1072', '#1053#1072#1079#1074#1072 +
+        #1085#1080#1077#1044#1080#1072#1075#1085#1086#1079#1072
+      'From '
+      
+        '('#1044#1080#1072#1075#1085#1086#1079#1055#1072#1094#1080#1077#1085#1090#1072' LEFT JOIN '#1055#1072#1094#1080#1077#1085#1090' ON '#1044#1080#1072#1075#1085#1086#1079#1055#1072#1094#1080#1077#1085#1090#1072'.'#8470#1087#1072#1094#1080#1077#1085#1090#1072' ' +
+        '=  '#1055#1072#1094#1080#1077#1085#1090'.'#8470#1055#1072#1094#1080#1077#1085#1090#1072')'
+      
+        '                                  LEFT JOIN '#1044#1080#1072#1075#1085#1086#1079' ON '#1044#1080#1072#1075#1085#1086#1079#1055#1072 +
+        #1094#1080#1077#1085#1090#1072'.'#1050#1086#1076#1044#1080#1072#1075#1085#1086#1079#1072' = '#1044#1080#1072#1075#1085#1086#1079'.'#1050#1086#1076#1044#1080#1072#1075#1085#1086#1079#1072)
+    Left = 368
+    Top = 488
+  end
+  object DiagnosisSourse: TDataSource
+    DataSet = QueryDiagnosis
+    Left = 280
     Top = 488
   end
 end

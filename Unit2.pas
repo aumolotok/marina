@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, DB, ADODB, Grids, DBGrids, ComCtrls, StdCtrls;
+  Dialogs, DB, ADODB, Grids, DBGrids, ComCtrls, StdCtrls, Buttons;
 
 type
   TForm2 = class(TForm)
@@ -32,9 +32,16 @@ type
     Address: TLabel;
     Add: TButton;
     Update: TButton;
+    Delete: TButton;
+    QueryDiagnosis: TADOQuery;
+    DiagnosisSourse: TDataSource;
+    Refresh: TBitBtn;
     procedure FormCreate(Sender: TObject);
     procedure DataGrig1CellClick(Column: TColumn);
     procedure AddClick(Sender: TObject);
+    procedure UpdateClick(Sender: TObject);
+    procedure DeleteClick(Sender: TObject);
+    procedure RefreshClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -51,22 +58,20 @@ implementation
 procedure EditFieldClear;
 begin
     Form2.NameField.Clear;
-     Form2.SurnameField.Clear;
-     Form2.FatherNameField.Clear;
-     Form2.BirthDateField.Clear;
-     Form2.PhoneField.Clear;
-     Form2.PolicyNumberField.Clear;
+    Form2.SurnameField.Clear;
+    Form2.FatherNameField.Clear;
+    Form2.BirthDateField.Clear;
+    Form2.PhoneField.Clear;
+    Form2.PolicyNumberField.Clear;
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);
 begin
-   QueryPatient.SQL.Clear;
-   QueryPatient.SQL.Add('SELECT * FROM Пациент');
+   //QueryPatient.SQL.Clear;
+   //QueryPatient.SQL.Add('SELECT * FROM Пациент');
    QueryPatient.Active:=True;
 
-   NameField.Text := QueryPatient.FieldByName('Имя').AsString;
-
-
+   QueryDiagnosis.Active := True;
 end;
 
 
@@ -74,7 +79,6 @@ end;
 
 procedure TForm2.DataGrig1CellClick(Column: TColumn);
 begin
-
   NameField.Text := QueryPatient.FieldByName('Имя').AsString;
   SurnameField.Text := QueryPatient.FieldByName('Фамилия').AsString;
   FatherNameField.Text := QueryPatient.FieldByName('Отчество').AsString;
@@ -98,10 +102,38 @@ begin
     QueryPatient.Active := True;
     QueryPatient.Post;
     EditFieldClear;
-
 end;
 
 
 
+
+procedure TForm2.UpdateClick(Sender: TObject);
+begin
+    QueryPatient.Edit;
+    QueryPatient.FieldByName('Имя').AsString := NameField.Text;
+    QueryPatient.FieldByName('Фамилия').AsString := SurnameField.Text;
+    QueryPatient.FieldByName('Отчество').AsString := FatherNameField.Text;
+    QueryPatient.FieldByName('ДатаРоджения').AsDateTime := StrToDate(BirthDateField.Text);
+    QueryPatient.FieldByName('Телефон').AsInteger := StrToInt(PhoneField.Text);
+    QueryPatient.FieldByName('НомерПолиса').AsInteger := StrToInt(PolicyNumberField.Text);
+    QueryPatient.FieldByName('Адрес').AsString := AddressField.Text;
+
+    QueryPatient.Post;
+    EditFieldClear;
+end;
+
+procedure TForm2.DeleteClick(Sender: TObject);
+begin
+  QueryPatient.Delete;
+  QueryPatient.Edit;
+
+  EditFieldClear;
+end;
+
+procedure TForm2.RefreshClick(Sender: TObject);
+begin
+  QueryDiagnosis.Active := False;
+  QueryDiagnosis.Active := True;
+end;
 
 end.
