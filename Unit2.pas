@@ -54,7 +54,7 @@ var
 implementation
 
 {$R *.dfm}
-
+ //////////////////////////////////////// Работа с БД незакончена
 procedure EditFieldClear;
 begin
     Form2.NameField.Clear;
@@ -67,8 +67,6 @@ end;
 
 procedure TForm2.FormCreate(Sender: TObject);
 begin
-   //QueryPatient.SQL.Clear;
-   //QueryPatient.SQL.Add('SELECT * FROM Пациент');
    QueryPatient.Active:=True;
 
    QueryDiagnosis.Active := True;

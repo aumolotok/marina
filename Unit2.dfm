@@ -1,8 +1,8 @@
 object Form2: TForm2
-  Left = 299
-  Top = 263
-  Width = 683
-  Height = 563
+  Left = 322
+  Top = 156
+  Width = 774
+  Height = 624
   Caption = 'Form2'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -93,7 +93,6 @@ object Form2: TForm2
         Width = 121
         Height = 21
         TabOrder = 1
-        Text = 'NameField'
       end
       object SurnameField: TEdit
         Left = 128
@@ -101,7 +100,6 @@ object Form2: TForm2
         Width = 121
         Height = 21
         TabOrder = 2
-        Text = 'SurnameField'
       end
       object FatherNameField: TEdit
         Left = 128
@@ -109,7 +107,6 @@ object Form2: TForm2
         Width = 121
         Height = 21
         TabOrder = 3
-        Text = 'FatherNameField'
       end
       object BirthDateField: TEdit
         Left = 128
@@ -117,7 +114,6 @@ object Form2: TForm2
         Width = 121
         Height = 21
         TabOrder = 4
-        Text = 'BirthDateField'
       end
       object PhoneField: TEdit
         Left = 400
@@ -125,7 +121,6 @@ object Form2: TForm2
         Width = 121
         Height = 21
         TabOrder = 5
-        Text = 'PhoneField'
       end
       object PolicyNumberField: TEdit
         Left = 400
@@ -133,7 +128,6 @@ object Form2: TForm2
         Width = 121
         Height = 21
         TabOrder = 6
-        Text = 'PolicyNumberField'
       end
       object AddressField: TEdit
         Left = 400
@@ -143,7 +137,6 @@ object Form2: TForm2
         Constraints.MinHeight = 57
         Constraints.MinWidth = 121
         TabOrder = 7
-        Text = 'AddressField'
       end
       object Add: TButton
         Left = 176
@@ -201,10 +194,9 @@ object Form2: TForm2
     end
   end
   object AdoCon1: TADOConnection
-    Connected = True
     ConnectionString = 
-      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=DataBase\Voylikova_' +
-      '12345 2003.mdb;Persist Security Info=False'
+      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\GitHub\'#1044#1080#1087#1083#1086#1084' '#1052#1072 +
+      #1088#1080#1085#1072'\DataBase\12345.!!!.mdb;Persist Security Info=False'
     LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
