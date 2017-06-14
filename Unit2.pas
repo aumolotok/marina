@@ -3,8 +3,9 @@ unit Unit2;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, DB, ADODB, Grids, DBGrids, ComCtrls, StdCtrls, Buttons;
+  Windows, Messages, SysUtils, Variants,DB, ADODB, Buttons,
+  StdCtrls, Controls, Grids, DBGrids, ComCtrls,  Graphics, Forms,
+  Dialogs, Classes;
 
 type
   TForm2 = class(TForm)
@@ -42,6 +43,7 @@ type
     procedure UpdateClick(Sender: TObject);
     procedure DeleteClick(Sender: TObject);
     procedure RefreshClick(Sender: TObject);
+    procedure BackClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -93,8 +95,8 @@ begin
     QueryPatient.FieldByName('Фамилия').AsString := SurnameField.Text;
     QueryPatient.FieldByName('Отчество').AsString := FatherNameField.Text;
     QueryPatient.FieldByName('ДатаРоджения').AsDateTime := StrToDate(BirthDateField.Text);
-    QueryPatient.FieldByName('Телефон').AsInteger := StrToInt(PhoneField.Text);
-    QueryPatient.FieldByName('НомерПолиса').AsInteger := StrToInt(PolicyNumberField.Text);
+    QueryPatient.FieldByName('Телефон').AsString := PhoneField.Text;
+    QueryPatient.FieldByName('НомерПолиса').AsString := PolicyNumberField.Text;
     QueryPatient.FieldByName('Адрес').AsString := AddressField.Text;
 
     QueryPatient.Active := True;
@@ -112,8 +114,8 @@ begin
     QueryPatient.FieldByName('Фамилия').AsString := SurnameField.Text;
     QueryPatient.FieldByName('Отчество').AsString := FatherNameField.Text;
     QueryPatient.FieldByName('ДатаРоджения').AsDateTime := StrToDate(BirthDateField.Text);
-    QueryPatient.FieldByName('Телефон').AsInteger := StrToInt(PhoneField.Text);
-    QueryPatient.FieldByName('НомерПолиса').AsInteger := StrToInt(PolicyNumberField.Text);
+    QueryPatient.FieldByName('Телефон').AsString := PhoneField.Text;
+    QueryPatient.FieldByName('НомерПолиса').AsString := PolicyNumberField.Text;
     QueryPatient.FieldByName('Адрес').AsString := AddressField.Text;
 
     QueryPatient.Post;
@@ -132,6 +134,11 @@ procedure TForm2.RefreshClick(Sender: TObject);
 begin
   QueryDiagnosis.Active := False;
   QueryDiagnosis.Active := True;
+end;
+
+procedure TForm2.BackClick(Sender: TObject);
+begin
+   //Unit2.
 end;
 
 end.

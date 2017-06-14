@@ -1,9 +1,9 @@
 object Form2: TForm2
-  Left = 322
-  Top = 156
-  Width = 774
-  Height = 624
-  Caption = 'Form2'
+  Left = 264
+  Top = 180
+  Width = 658
+  Height = 565
+  Caption = #1041#1072#1079#1072' '#1044#1072#1085#1085#1099#1093
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -195,8 +195,8 @@ object Form2: TForm2
   end
   object AdoCon1: TADOConnection
     ConnectionString = 
-      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\GitHub\'#1044#1080#1087#1083#1086#1084' '#1052#1072 +
-      #1088#1080#1085#1072'\DataBase\12345.!!!.mdb;Persist Security Info=False'
+      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=DataBase\Voylikova_' +
+      '12345 2003.mdb;Persist Security Info=False'
     LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
@@ -230,12 +230,12 @@ object Form2: TForm2
       
         '                                  LEFT JOIN '#1044#1080#1072#1075#1085#1086#1079' ON '#1044#1080#1072#1075#1085#1086#1079#1055#1072 +
         #1094#1080#1077#1085#1090#1072'.'#1050#1086#1076#1044#1080#1072#1075#1085#1086#1079#1072' = '#1044#1080#1072#1075#1085#1086#1079'.'#1050#1086#1076#1044#1080#1072#1075#1085#1086#1079#1072)
-    Left = 368
+    Left = 600
     Top = 488
   end
   object DiagnosisSourse: TDataSource
     DataSet = QueryDiagnosis
-    Left = 280
+    Left = 512
     Top = 488
   end
 end

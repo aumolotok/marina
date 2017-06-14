@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, Menus,Unit2, Grids, DBGrids, ComCtrls, DB,
+  Dialogs, StdCtrls, ExtCtrls, Menus,Unit3,Unit4,Unit2, Grids, DBGrids, ComCtrls, DB,
   ADODB;
 
 type
@@ -26,13 +26,8 @@ type
     ProteinLbl: TLabel;
     PistLeiko: TEdit;
     PistLeikoLbl: TLabel;
-    Edges: TGroupBox;
-    resolution: TRadioGroup;
-    goodresolution: TRadioButton;
-    rbBadResolution: TRadioButton;
     CauthOut: TGroupBox;
     BloodCauthOut: TCheckBox;
-    CauthOutType: TRadioGroup;
     BloodOut: TRadioButton;
     PusOut: TRadioButton;
     MucusOut: TRadioButton;
@@ -40,11 +35,9 @@ type
     ShadingUp: TRadioButton;
     ShadingDown: TRadioButton;
     Shading: TGroupBox;
-    ShadingAreas: TRadioGroup;
     MultipleAreas: TRadioButton;
     SingleArea: TRadioButton;
     TumorInf: TGroupBox;
-    TumorShape: TRadioGroup;
     StarShape: TRadioButton;
     RingShape: TRadioButton;
     LobitShape: TRadioButton;
@@ -57,7 +50,6 @@ type
     DiagnosBtn: TButton;
     Sealing: TCheckBox;
     RoundShape: TRadioButton;
-    ShadowSize: TRadioGroup;
     Chose: TButton;
     NoShadow: TRadioButton;
     Smal: TRadioButton;
@@ -79,7 +71,6 @@ type
     DiagnosisesTB: TDBGrid;
     DiagnosisesSourse: TDataSource;
     DiagnosisQuery: TADOQuery;
-    AddDiagnose: TButton;
     DescrimDiagnose: TButton;
     WeakNess: TCheckBox;
     Exhaustingness: TCheckBox;
@@ -96,13 +87,25 @@ type
     Walls: TGroupBox;
     Smooth: TCheckBox;
     Even: TCheckBox;
-    Clear: TCheckBox;
-    Unclear: TCheckBox;
     Bumpy: TCheckBox;
     Loose: TCheckBox;
     Swollen: TCheckBox;
     IrregularWall: TCheckBox;
-    RegularShape: TRadioButton;
+    GroupBox1: TGroupBox;
+    ShadoSize: TGroupBox;
+    ShadingAreas: TGroupBox;
+    CauthOutType: TGroupBox;
+    Clear: TRadioButton;
+    Unclear: TRadioButton;
+    DAte: TEdit;
+    DescAdd: TButton;
+    TreeAdd: TButton;
+    SupportQuery: TADOQuery;
+    DateLbl: TLabel;
+    lbl1: TLabel;
+    Refresh: TButton;
+    N1: TMenuItem;
+    N2: TMenuItem;
     procedure DiagnosBtnClick(Sender: TObject);
     procedure EritroChange(Sender: TObject);
     procedure LeikoChange(Sender: TObject);
@@ -113,6 +116,12 @@ type
     procedure FormCreate(Sender: TObject);
     procedure PatientChooseTBCellClick(Column: TColumn);
     procedure DescrimDiagnoseClick(Sender: TObject);
+    procedure DescAddClick(Sender: TObject);
+    procedure TreeAddClick(Sender: TObject);
+    procedure RefreshClick(Sender: TObject);
+    procedure N1Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+  //  procedure jghjuhfvvt1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -123,7 +132,7 @@ var
   Form1: TForm1;
   Fls: Boolean;
   s1: string;
-  i: Integer;
+  i,ChosenOne: Integer;
 
   EritroLevel, GemoLevel, LeikoLevel, LimfoLevel, SOELevel,
   EdgesResolutionST,ShadingLocationST,ShadingAreasST,CauthOutST, TumorShapeSt,
@@ -193,10 +202,10 @@ const
   Low : string = 'Low';
   Normal : string = 'Normal';
   High : string = 'High';
-  Oncology: string = 'Онкология';
+  Oncology: string = 'Рак легких';
   Infiltrate: string  = 'Инфильтративный туберкулез';
   Dissiminative: string = 'Диссеминированный туберкулез';
-  Cavernoze: string = 'Каверозный туберкулез';
+  Cavernoze: string = 'Кавернозный туберкулез';
   Pneumonia: string = 'Пневмония';
   Hotbed : string = 'Очаговый туберкулез';
 
@@ -270,7 +279,7 @@ procedure TForm1.DiagnosBtnClick(Sender: TObject);// Дерево решений
 begin
 
   Fls :=False;
-  if (rbBadResolution.Checked)then
+  if (Unclear.Checked)then
     begin
           if (GemoLevel = Low)then
             begin
@@ -421,7 +430,7 @@ end;
 
 procedure TForm1.ChoseClick(Sender: TObject);
 begin
-  Unit2.Form2.Show;
+  Form2.Show;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject); // Активируем запросы для таблиц из БД ( Бд недоделано)
@@ -436,6 +445,7 @@ begin
    ChosenSurnameTitle.Caption:=   PatientChooseQuery.FieldByName('Фамилия').AsString;
    ChosenFatherNameTitle.Caption:=   PatientChooseQuery.FieldByName('Отчество').AsString;
    PolicyNumberTitle.Caption:= 'Номер Полиса: ' + PatientChooseQuery.FieldByName('НомерПолиса').AsString;
+   ChosenOne := PatientChooseQuery.FieldByName('№пациента').AsInteger;
 end;
 
 function X1B (I:integer):Integer; // СОбирает переменную X1 -  Анемнез
@@ -444,8 +454,8 @@ function X1B (I:integer):Integer; // СОбирает переменную X1 -  Анемнез
                arx1[i,2]*Integer(Form1.Exhaustingness.Checked) +
                arx1[i,3]*Integer(Form1.WeightLoss.Checked) +
                arx1[i,4]*Integer(Form1.Paleness.Checked) +
-               arx1[i,5]*Integer(Integer((StrToInt(Form1.TemperatureValue.Text))< 38) and Integer((StrToInt(Form1.TemperatureValue.Text))> 37)) +
-               arx1[i,6]*Integer(Integer((StrToInt(Form1.TemperatureValue.Text))>38)) +
+               arx1[i,5]*Integer(Integer((StrToFloat(Form1.TemperatureValue.Text))< 38) and Integer((StrToFloat(Form1.TemperatureValue.Text))> 37)) +
+               arx1[i,6]*Integer(Integer((StrToFloat(Form1.TemperatureValue.Text))>38)) +
                arx1[i,7]*Integer(Form1.Cough.Checked) +
                arx1[i,8]*Integer(Form1.CoughOutIs.Checked) +
                arx1[i,9]*Integer(Form1.BloodCauthOut.Checked)+
@@ -535,6 +545,7 @@ var
 begin
 
 
+
   Y1 := -58.1604 + 0.8317*X1B(1) - 0.1794*X2B(1) + 1.6580*X3B(1) + 3.2724*X4B(1) + 6.6819*X5B(1) + 0.7874*X6B(1) + 0.5056*X7B(1) + 0.2059*X8B(1);
   Y2 := -57.7186 + 0.6910*X1B(2) - 0.4665*X2B(2) + 0.9706*X3B(2) + 4.0095*X4B(2) + 7.2931*X5B(2) + 0.8862*X6B(2) + 0.0328*X7B(2) + 0.2068*X8B(2);
   Y3 := -61.4562 + 0.8907*X1B(3) - 0.3883*X2B(3) + 1.3705*X3B(3) + 4.1512*X4B(3) + 7.1243*X5B(3) + 0.7874*X6B(3) + 0.2266*X7B(3) - 0.1462*X8B(3);
@@ -547,24 +558,65 @@ begin
   if ((Y3>Y1) and (Y3>Y2) and (Y3>Y4) and (Y3>Y5) and (Y3>Y6)) then DiagnosisDisc := Hotbed;
   if ((Y4>Y1) and (Y4>Y2) and (Y4>Y3) and (Y4>Y5) and (Y4>Y6)) then DiagnosisDisc := Dissiminative;
   if ((Y5>Y1) and (Y5>Y2) and (Y5>Y3) and (Y5>Y4) and (Y5>Y6)) then DiagnosisDisc := Oncology;
-  //if ((Y6>Y1) and (Y6>Y2) and (Y6>Y3) and (Y6>Y4) and (Y6>Y5)) then DiagnosisDisc := Pneumonia;
+  if ((Y6>Y1) and (Y6>Y2) and (Y6>Y3) and (Y6>Y4) and (Y6>Y5)) then DiagnosisDisc := Pneumonia;
 
   ShowMessage('Диагноз на основе дискриминантного анализа: ' + DiagnosisDisc);
    PistLeiko.Text := floatToStr(Y1);
-    Y1 := 0;
-    Y2 := 0;
-    Y3 := 0;
-    Y4 := 0;
-    Y5 := 0;
-    Y6 := 0;
+
 end;
 
- //arx2: array[1 .. 6, 1 .. 3]
+procedure AddDiagnosess (Choose:string);
+var
+  i:Integer;
+begin
+  try
+  Form1.SupportQuery.SQL.Clear;
+  Form1.SupportQuery.SQL.Add('SELECT КодДиагноза FROM Диагноз WHERE НазваниеДиагноза = '+#39 + Choose + #39);
+  Form1.SupportQuery.Active := True;
+  i:= Form1.SupportQuery.FieldByName('КодДиагноза').AsInteger;
+
+  Form1.SupportQuery.SQL.Clear;
+  Form1.SupportQuery.SQL.Add('Select * FROM ДиагнозПациента');
+  Form1.SupportQuery.Active := True;
+  Form1.SupportQuery.Insert;
+
+  Form1.SupportQuery.FieldByName('КодДиагноза').AsInteger:= i;
+  Form1.SupportQuery.FieldByName('№Пациента').AsInteger := Form1.PatientChooseQuery.FieldByName('№Пациента').AsInteger;
+  Form1.SupportQuery.FieldByName('ДатаДиагноза').AsDateTime := StrToDate(Form1.DAte.Text);
+  Form1.SupportQuery.Post;
+
+  ShowMessage('Готово!');
+  Form1.DAte.Clear;
+  except
+end;
+end;
+
+procedure TForm1.DescAddClick(Sender: TObject);
+begin
+     AddDiagnosess(DiagnosisDisc);
+end;
+
+procedure TForm1.TreeAddClick(Sender: TObject);
+begin
+     AddDiagnosess(DiagnosisDisc);
+end;
+
+procedure TForm1.RefreshClick(Sender: TObject);
+begin
+  DiagnosisQuery.Active :=False;
+  DiagnosisQuery.Active :=true;
+end;
 
 
 
+procedure TForm1.N1Click(Sender: TObject);
+begin
+ Form3.Show;
+end;
 
-
-
+procedure TForm1.N2Click(Sender: TObject);
+begin
+ Form1.Close;
+end;
 
 end.
